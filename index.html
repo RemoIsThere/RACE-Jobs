@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for SEO and responsiveness -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Browse and apply for project opportunities, workshops, and internships happening across colleges. RACE Opportunities Board."
+    />
+    <title>RACE | Available Opportunities</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ========== SITE HEADER / NAVBAR ========== -->
+    <header class="site-header" id="site-header">
+      <div class="container">
+        <div class="header-inner">
+          <!-- Logo / Brand -->
+          <a href="#" class="brand" id="brand-logo">
+            <span class="brand-icon">⚡</span>
+            <span class="brand-name">RACE</span>
+          </a>
+
+          <!-- Nav tagline -->
+          <p class="header-tagline">Opportunities Board</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="hero-section">
+      <div class="container">
+        <!-- Floating badge -->
+        <span class="hero-badge" id="hero-badge"
+          >🚀 New Projects Added Weekly</span
+        >
+
+        <!-- Main heading -->
+        <h1 class="hero-title" id="hero-title">Available Opportunities</h1>
+        <p class="hero-subtitle" id="hero-subtitle">
+          Apply for upcoming projects and workshops happening across
+          colleges.<br />
+          Connect instantly via WhatsApp — no lengthy forms.
+        </p>
+
+        <!-- Live stats strip -->
+        <div class="hero-stats" id="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="stat-total">6</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">8+</span>
+            <span class="stat-label">Cities</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">₹5K</span>
+            <span class="stat-label">Avg. Payout</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative blobs -->
+      <div class="hero-blob blob-1" aria-hidden="true"></div>
+      <div class="hero-blob blob-2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ========== FILTERS / SEARCH BAR ========== -->
+    <section class="filters-section" id="filters-section">
+      <div class="container">
+        <div class="filters-wrapper" id="filters-wrapper">
+          <!-- Search Input -->
+          <div class="search-wrapper" id="search-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              class="search-input"
+              placeholder="Search by title, college, or location…"
+              autocomplete="off"
+              aria-label="Search opportunities"
+            />
+            <!-- Clear search button -->
+            <button
+              class="search-clear"
+              id="search-clear"
+              aria-label="Clear search"
+              title="Clear"
+              style="display: none"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Location Filter Dropdown -->
+          <div class="filter-dropdown-wrapper" id="filter-dropdown-wrapper">
+            <label for="location-filter" class="sr-only"
+              >Filter by Location</label
+            >
+            <select
+              id="location-filter"
+              class="filter-dropdown"
+              aria-label="Filter by location"
+            >
+              <option value="">📍 All Locations</option>
+              <!-- Options injected by JS -->
+            </select>
+          </div>
+
+          <!-- Payout Filter Dropdown -->
+          <div class="filter-dropdown-wrapper" id="payout-filter-wrapper">
+            <label for="payout-filter" class="sr-only">Filter by Payout</label>
+            <select
+              id="payout-filter"
+              class="filter-dropdown"
+              aria-label="Filter by payout"
+            >
+              <option value="">💰 All Payouts</option>
+              <option value="low">Under ₹3,000</option>
+              <option value="mid">₹3,000 – ₹6,000</option>
+              <option value="high">Above ₹6,000</option>
+            </select>
+          </div>
+
+          <!-- Results count badge -->
+          <div class="results-count" id="results-count" aria-live="polite">
+            Showing <strong id="results-number">6</strong> opportunities
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== OPPORTUNITIES GRID ========== -->
+    <main class="main-content" id="main-content">
+      <div class="container">
+        <!-- Cards Grid — dynamically filled by JS -->
+        <div
+          class="cards-grid"
+          id="cards-grid"
+          role="list"
+          aria-label="Opportunity cards"
+        >
+          <!-- Cards injected here by JavaScript -->
+        </div>
+
+        <!-- No Results Message — shown when search finds nothing -->
+        <div
+          class="no-results"
+          id="no-results"
+          style="display: none"
+          role="alert"
+          aria-live="polite"
+        >
+          <div class="no-results-icon" aria-hidden="true">🔭</div>
+          <h2 class="no-results-title">No opportunities found</h2>
+          <p class="no-results-text">
+            Try adjusting your search terms or filters.<br />
+            New projects are added every week!
+          </p>
+          <button class="btn-reset-filters" id="btn-reset-filters">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer" id="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <p class="footer-brand">⚡ RACE</p>
+          <p class="footer-copy">
+            © 2026 RACE. Connecting talent with opportunity.
+          </p>
+          <p class="footer-contact">
+            Questions? Chat on
+            <a
+              href="https://wa.me/7988199822"
+              target="_blank"
+              rel="noopener"
+              class="footer-wa-link"
+              id="footer-wa-link"
+              >WhatsApp</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
