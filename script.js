@@ -1,4 +1,4 @@
-/**
+﻿/**
  * RACE — Opportunities Board | script.js
  * Author : Senior Frontend Developer (Antigravity)
  * Purpose: Renders opportunity cards dynamically, powers the
@@ -434,3 +434,41 @@ window.addEventListener(
    Run init() once the DOM is fully loaded.
 ══════════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", init);
+
+/* 
+   UI ANIMATION LAYER — ShadCN-style (visual only, no logic touch)
+   A. Ripple: click on .btn-apply spawns a ripple wave
+   B. MutationObserver: auto-wires ripple after every renderCards
+      (avoids function redeclaration and hoisting issues entirely)
+ */
+
+/* A. Ripple */
+function createRipple(e) {
+  var btn  = e.currentTarget;
+  var rect = btn.getBoundingClientRect();
+  var size = Math.max(rect.width, rect.height);
+  var x    = e.clientX - rect.left  - size / 2;
+  var y    = e.clientY - rect.top   - size / 2;
+  var ripple = document.createElement("span");
+  ripple.className     = "ripple";
+  ripple.style.cssText = "width:" + size + "px;height:" + size + "px;left:" + x + "px;top:" + y + "px;";
+  btn.appendChild(ripple);
+  ripple.addEventListener("animationend", function() { ripple.remove(); }, { once: true });
+}
+
+function attachRipple() {
+  var buttons = cardsGrid.querySelectorAll(".btn-apply");
+  buttons.forEach(function(btn) {
+    btn.removeEventListener("click", createRipple);
+    btn.addEventListener("click", createRipple);
+  });
+}
+
+/* B. MutationObserver — fires whenever cardsGrid children change */
+var _gridObserver = new MutationObserver(function() {
+  requestAnimationFrame(attachRipple);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  _gridObserver.observe(cardsGrid, { childList: true });
+});
